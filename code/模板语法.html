@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <span> Message : {{ message }}</span>
+
+        <br>
+        <span v-once> 不变的消息 : {{ message }}</span>
+    </div>
+
+    <br>
+    <div id="app2">
+        {{message}}
+        <span v-html="message"></span>
+    </div>
+
+    <br>
+    <div id="app3">
+        <div v-html="message"></div>
+        <div v-bind:title="message"></div>
+    </div>
+
+    <br>
+    <div id="app4">
+        <a v-bind:href="url">跳转链接</a>
+        <!-- bind 动态绑定值 -->
+    </div>
+
+    <br>
+    <div id="app5">
+        <span></span>
+        <button v-on:click="cons">打印</button>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            message: "这是消息",
+        }
+    })
+
+    var vm2 = new Vue({
+        el: "#app2",
+        data: {
+            message: '<a href="javascript:;">这是一个a标签</a>'
+        }
+    })
+
+    var vm3 = new Vue({
+        el: "#app3",
+        data: {
+            message: "你好啊",
+        }
+    })
+
+    var vm4 = new Vue({
+        el: "#app4",
+        data: {
+            url: "www.baidu.com"
+        }
+    })
+
+    var vm5 = new Vue({
+        el: "#app5",
+        data: {
+            message: "这是message的内容"
+        },
+        methods: {
+            cons: function () {
+                console.log(this.message)
+            }
+        }
+    })
+
+    // 缩写 v-bind  =>  :
+    //      v-on   =>   @
+</script>
+
+</html>
