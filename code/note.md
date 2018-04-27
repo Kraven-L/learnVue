@@ -4,3 +4,23 @@
             event.preventDefault();
 
             <form v-on:submit.prevent="onSubmit">...</form>
+
+# Class 与 Style 绑定
+
+## 绑定HTML Class
+    -> 可以传给 v-bind:class 一个对象，来动态地切换class 
+        <div v-bind:class="{ active : "isActive" }"></div>
+
+    -> 也可以绑定一个返回对象的计算属性
+
+    -> 也可以绑定一个数组，并且在数组语法中也可以使用对象语法
+
+    -> 绑定在组件上也可以，这些类名会被添加到组件的根元素上，已有的类名不会被覆盖
+
+## 绑定内联样式
+    -> 可以传给 v-bind:style 一个样式对象，样式少的话可以传单个样式
+
+    -> 可以将多个样式对象应用到同一个元素上
+        <div v-bind:style="[ baseStyle , common Style ]"></div>
+
+    -> vue能自动检测需要添加浏览器引擎前缀的CSS属性，并添加对应前缀。
