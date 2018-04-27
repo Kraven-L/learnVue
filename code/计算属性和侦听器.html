@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{ num }}
+        <br> {{ aDouble }}
+        <br> {{ aPlus }}
+        <br> {{ now }}
+        <br> {{ time }}
+    </div>
+
+    <div id="name">
+        firstName : {{ firstName }}
+        <br> lastName : {{ lastName }}
+        <br> fullName : {{ fullName }}
+    </div>
+
+    <br>
+    <div id="watch">
+        <p>
+            Ask a yes/no question :
+            <input type="text" v-model="question">
+        </p>
+        <p>{{ answer }}</p>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            num: 10
+        },
+        computed: {
+            aDouble: function () {
+                return this.num * 2
+            },
+            aPlus: {
+                get: function () {
+                    return this.num + 1;
+                },
+                set: function (v) {
+                    this.num = v - 1;
+                }
+            },
+            now: function () {
+                return Date.now();
+            },
+            time: function () {
+                setTimeout(function () {
+                    return Date();
+                }, 100)
+            }
+        }
+    })
+
+    vm.aPlus = 8;
+    console.log(vm.aPlus)
+    console.log(vm.num)
+
+    var person = new Vue({
+        el: "#name",
+        data: {
+            firstName: "Liam",
+            lastName: "Neeson"
+        },
+        computed: {
+            //计算属性
+            fullName: {
+                get: function () {
+                    return this.firstName + ' ' + this.lastName;
+                },
+                set: function (name) {
+                    var names = name.split(' ');
+                    this.firstName = names[0];
+                    this.lastName = names[names.length - 1];
+                }
+            }
+        }
+    })
+
+    person.fullName = 'Michael Jordan'
+
+
+    // 侦听器
+
+    var watchExampleVM = new Vue({
+        el: "#watch",
+        data: {
+            question: "",
+            answer: "I can't give you an answer until you ask a question!"
+        },
+        watch: {
+            // 如果 'question' 发生改变，这个函数就会运行
+            question: function () {
+                this.answer = "Waiting for you to stop typing..."
+                this.getAnswer()
+            }
+        },
+        methods: {
+            getAnswer: _.debounce(
+                function () {
+                    if (this.question.indexOf('?') === -1) {
+                        this.answer = 'Question usually contain a question mark. :-)'
+                        return
+                    }
+                    this.answer = 'Thinking...'
+                    var vm = this;
+                    // 此处的 axios 不支持jsonp 暂无法解决报错
+                    axios.get('http://yesno.wtf/api')
+                        .then(function (response) {
+                            vm.answer = _.capitalize(response.data.answer)
+                        })
+                        .catch(function (error) {
+                            vm.answer = 'Error!Could not reach the API. ' + error
+                        })
+                },
+                500
+            )
+        }
+    })
+</script>
+
+</html>
