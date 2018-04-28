@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <ul>
+            <li v-for=" (msg, index) in lists">
+                {{ index }} - {{ msg.message }}
+            </li>
+        </ul>
+        <ul>
+            <li v-for=" (msg, index) in array" v-if="index>0" >
+                {{ message }} - {{ index }} - {{ msg }}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="(value,key,index) in object">
+                    {{ index }} - {{ key }} : {{ value }} 
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el : "#example",
+        data : {
+            message : "message",
+            lists : [
+                { message : "one" },
+                { message : "two" },
+                { message : "three" }
+                // 通过 数组的 增删 等方法，可以触发视图的更新
+            ],
+            array : [
+                "arr1" , "arr2" , "arr3", "arr4", "arr5", "arr6", "arr7"
+            ],
+            object : {
+                firstName : "Liam",
+                lastName : "Neeson",
+                age : 60
+            }
+        }
+    })
+</script>
+</html>

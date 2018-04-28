@@ -5,6 +5,9 @@
 
             <form v-on:submit.prevent="onSubmit">...</form>
 
+    -> 缩写  v-bind  =>  :
+            v-on   =>   @
+
 # Class 与 Style 绑定
 
 ## 绑定HTML Class
@@ -32,3 +35,8 @@
     -> v-if 和 v-show 都能根据条件渲染元素，不同的是 v-show 的元素始终会被渲染并保留在 DOM 中，只是切换元素的CSS 的 display 属性
 
     -> v-if 和 v-show 相比， v-if 有更高的切换开销，v-show 有更高的初始渲染开销。
+
+# 列表渲染 
+    -> 在循环之中可以添加 v-if 来限制遍历的起始位置
+    -> 在遍历时 对应参数为 v-for="(value,key,index) in items"
+    -> 可以用数组的增删方法来对要遍历的数组进行修改，从而触发视图的更新
