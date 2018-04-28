@@ -40,3 +40,5 @@
     -> 在循环之中可以添加 v-if 来限制遍历的起始位置
     -> 在遍历时 对应参数为 v-for="(value,key,index) in items"
     -> 可以用数组的增删方法来对要遍历的数组进行修改，从而触发视图的更新
+        push() pop() shift() unshift() splice()等
+        
