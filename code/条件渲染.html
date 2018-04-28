@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1 v-if="ok">Yes</h1>
+        <h1 v-else>No</h1>
+
+        <h2 v-show="ok">hello</h2>
+        <h2 v-show="notOk">Vue.js</h2>
+    </div>
+
+    <div id="app2">
+
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el : "#app",
+        data : {
+            message : "这是message里面的数据",
+            ok : true,
+            notOk:false,
+        }
+    })
+
+    var vm2 = new Vue({
+        el : "#app2",
+        data : {
+            message : "这是message里面的数据",
+
+        }
+    })
+</script>
+</html>

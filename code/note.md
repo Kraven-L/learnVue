@@ -24,3 +24,11 @@
         <div v-bind:style="[ baseStyle , common Style ]"></div>
 
     -> vue能自动检测需要添加浏览器引擎前缀的CSS属性，并添加对应前缀。
+
+# 条件渲染
+    -> 用 key 管理可复用的元素
+        key = "xxxxxx" 添加一个具有唯一属性的 key 属性，就能将一个元素"独立"为两个元素
+
+    -> v-if 和 v-show 都能根据条件渲染元素，不同的是 v-show 的元素始终会被渲染并保留在 DOM 中，只是切换元素的CSS 的 display 属性
+
+    -> v-if 和 v-show 相比， v-if 有更高的切换开销，v-show 有更高的初始渲染开销。
