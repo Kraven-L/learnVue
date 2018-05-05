@@ -24,28 +24,81 @@
                     {{ index }} - {{ key }} : {{ value }} 
             </li>
         </ul>
+        <ul>
+            <li v-for="n in evenNum">
+                {{ n }}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="n in even(number)">
+                {{ n }}
+            </li>
+        </ul>
+        <div>
+            <ul>
+                <li v-for="n in 31">
+                    5月{{ n }}号
+                </li>
+            </ul>
+        </div>
+        
     </div>
 </body>
 <script>
-    var vm = new Vue({
-        el : "#example",
-        data : {
-            message : "message",
-            lists : [
-                { message : "one" },
-                { message : "two" },
-                { message : "three" }
-                // 通过 数组的 增删 等方法，可以触发视图的更新
-            ],
-            array : [
-                "arr1" , "arr2" , "arr3", "arr4", "arr5", "arr6", "arr7"
-            ],
-            object : {
-                firstName : "Liam",
-                lastName : "Neeson",
-                age : 60
+        var vm = new Vue({
+            el : "#example",
+            data : {
+                message : "message",
+                lists : [
+                    { message : "one" },
+                    { message : "two" },
+                    { message : "three" }
+                    // 通过 数组的 增删 等方法，可以触发视图的更新
+                ],
+                array : [
+                    "arr1" , "arr2" , "arr3", "arr4", "arr5", "arr6", "arr7"
+                ],
+                object : {
+                    firstName : "Liam",
+                    lastName : "Neeson",
+                    age : 60
+                },
+                number : [ 1, 2, 3, 4, 5, 6, 7, 8 ]
+            },
+            computed : {
+                evenNum : function (){
+                    return this.number.filter(function(num){
+                        return num % 2 ===0
+                    })
+                }
+            },
+            methods : {
+                even : function (v){
+                    return this.number.filter(function (num){
+                        return num % 2 ===1
+                    })
+                }
             }
-        }
-    })
+        })
+
+        // vm.lists[1] = { message : "changeAgain" };
+        Vue.set(vm.lists,1,{ message : "changeAgain" })
+
+        //实例方法
+        vm.$set(vm.lists,1,{ message : "changeAgain2" })
+
+        // 对嵌套对象添加响应书属性
+        vm.object.gender = "male";
+
+        Vue.set(vm.object,"school","Oxford");
+
+        vm.$set(vm.object,"city","wuhan")
+
+        // 对已有对象添加多个新属性，要用以下方法 
+        vm.object = Object.assign({},vm.object,{
+            job : "police",
+            hobby : "guitar"
+        })
+    
 </script>
 </html>
