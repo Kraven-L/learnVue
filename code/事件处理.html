@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="counter += 1">add</button>
+        <br>
+         按钮已经被点击了{{ counter}}次
+         <br>
+         <button v-on:click="greet">Greet</button>
+         <br>
+         <span v-on:click="greet">这是一个span</span>
+         <br>
+         <button v-on:click="say('哈喽')">say 哈喽</button>
+         <br>
+         <button v-on:click="say('what')">say what</button>
+         <br>
+         <a v-on:mouseover="say('进入a标签')" v-on:mouseout="bye('离开a标签啊')">这是一个a标签</a>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el : "#app",
+        data : {
+            message : "这是message里面的数据",
+            counter : 0,
+            name : "Liam Neeson"
+        },
+        methods : {
+            greet : function (e){
+                alert('Hello ' +this.name + '!' );
+                if(e){
+                    alert("点击的标签名是" + e.target.tagName);
+                }
+            },
+            say : function (e){
+                // alert(e);
+                console.log(e)
+            },
+            bye : function (e){
+                console.log(e)
+            }
+        }
+    })
+</script>
+</html>

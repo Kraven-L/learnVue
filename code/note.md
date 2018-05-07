@@ -52,3 +52,30 @@
     -> 在循环之中可以添加 v-if 来限制遍历的起始位置
 
     -> 当v-for 和 v-if 处于同一节点，前者比后者优先级更高，也就是v-if 会在每个v-for 循环中进行一次判断，这样可以进行筛选的渲染。
+
+# 事件处理
+    -> 可以用v-on 指令监听事件 ，并在触发时运行 js 中一些的代码
+
+    -> v-on 还可以接受一个需要调用的方法名 
+
+## 修饰符
+    -> 事件修饰符
+        .stop    .prevent    .capture    .self    .once
+    -> 修饰符可以串联，顺序很重要
+        eg: v-on:click.prevent.self 会阻止所有的点击，而
+            v-on:click.self.prevent 会阻止对元素自身的点击
+
+    -> .once修饰符 只会触发一次
+        eg: <a v-on:click.once="doThis"></a>
+
+    -> 按键修饰符
+        通常监听键盘事件时，需要检查按下按键的键值
+        eg: <input v-on:keyup.13="submit"></input> 只有在 'keycode' 是13的时候才调用 vm.submit()
+
+        -> 也会提供别名
+            <input v-on:keyup.enter="submit"></input>
+
+            全部的按键别名： .enter  .tab  .delete  .esc  .space  .up  .down  .left  .right
+
+        -> 也可以通过全局的 config.keyCodes 对象自定义按键修饰符别名：
+            Vue.config.keyCodes.f1 = 112
