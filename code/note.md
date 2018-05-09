@@ -79,3 +79,13 @@
 
         -> 也可以通过全局的 config.keyCodes 对象自定义按键修饰符别名：
             Vue.config.keyCodes.f1 = 112
+
+# 表单输入绑定
+
+
+
+
+
+
+
+
