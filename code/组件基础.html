@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="components-demo">
+        <button-counter></button-counter>
+
+        <blog-post title="My journey with Vue"></blog-post>
+        <blog-post title="Blogging with Vue"></blog-post>
+        <blog-post title="Why Vue is so fun"></blog-post>
+        <blog-post title="这是title里面的内容"></blog-post>
+    </div>
+</body>
+<script src="./js/组件基础.js"></script>
+<script>
+
+    Vue.component('blog-post',{
+        props : ['title'],
+        template : '<h3>{{title}}</h3>'
+    })
+    
+    new Vue({
+        el : "#components-demo",
+        data : {
+            posts : []
+        }
+    })
+
+    
+</script>
+</html>

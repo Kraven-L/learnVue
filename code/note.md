@@ -80,7 +80,17 @@
         -> 也可以通过全局的 config.keyCodes 对象自定义按键修饰符别名：
             Vue.config.keyCodes.f1 = 112
 
-# 表单输入绑定
+# 组件基础
+    -> data 必须是一个函数，而不是直接提供一个对象，因此每个实例可以维护一份被返回对象的独立的拷贝  
+        data : function (){
+            //...
+        }
+
+    -> 全局注册组件
+        Vue.component('component-name',{
+            //...
+        })
+
 
 
 
