@@ -11,7 +11,7 @@
     <div id="components-demo">
         <blog-post
             v-for="post in posts"
-            v-bind:key="post.id"
+            v-bind:num="post.id"
             v-bind:text="post.title"
         >
         </blog-post>
@@ -20,8 +20,8 @@
 <script>
 
     Vue.component('blog-post',{
-        props : ['text','key'],
-        template : '<h3>{{text}} - {{key}}</h3>'
+        props : ['text','num'],
+        template : '<h3>{{text}} - {{num}}</h3>'
     })
 
     var vm = new Vue({

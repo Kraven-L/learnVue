@@ -38,3 +38,14 @@
                 'component-a' : ComponentA,
             }
         }
+
+# Prop
+
+## 静态的和动态地prop
+    -> 传入静态的值
+        <blog-post title="这是一个静态的值"></blog-post>
+
+    -> 传入动态的值
+        <blog-post v-bind:title="post.title"></blog-post>
+
+    注： prop 传递的值尽量不要用已知的关键字（eg:key)
